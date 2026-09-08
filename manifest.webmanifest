@@ -1,0 +1,21 @@
+{
+  "name": "King Harimau Capital Dashboard",
+  "short_name": "King Harimau",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F3F6F4",
+  "theme_color": "#123D2B",
+  "description": "King Harimau Capital MD dashboard",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

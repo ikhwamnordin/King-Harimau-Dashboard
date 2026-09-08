@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#123D2B"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<link rel="icon" href="icon-192.png"/>
+<title>King Harimau Capital</title>
+<style>
+:root{
+  --forest:#123D2B; --forest2:#1B5A3F; --gold:#C8A24A; --bg:#F4F7F5; --card:#fff;
+  --text:#172019; --muted:#6B786F; --line:#DFE8E2; --green:#2E7D4F; --red:#C62828; --amber:#A36D13;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(145deg,var(--forest),#0B2C1F);color:#fff;padding:24px 18px 22px;position:sticky;top:0;z-index:5;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.brand{display:flex;align-items:center;gap:12px}.brand img{width:44px;height:44px;border-radius:12px}.brand h1{font-size:20px;margin:0}.brand p{margin:2px 0 0;font-size:12px;opacity:.78}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+.tabs{display:flex;gap:8px;overflow:auto;padding-bottom:4px;margin-bottom:14px}
+.tab{border:0;background:#E7EEE9;color:var(--forest);font-weight:700;padding:9px 12px;border-radius:999px;white-space:nowrap;cursor:pointer}
+.tab.active{background:var(--forest);color:#fff}
+.panel{display:none}.panel.active{display:block}
+.grid{display:grid;gap:12px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:0 4px 12px rgba(24,55,37,.05)}
+.kpi .label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:800}.kpi .value{font-size:25px;font-weight:850;margin-top:5px}.kpi .sub{font-size:12px;color:var(--muted);margin-top:2px}
+.section-title{font-size:13px;color:var(--forest);font-weight:900;letter-spacing:.04em;text-transform:uppercase;margin:22px 2px 9px}
+.holding{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
+.ticker{font-weight:900;font-size:18px}.meta{font-size:12px;color:var(--muted);margin-top:3px}.price{text-align:right;font-weight:850;font-size:18px}.pnl{font-size:12px;margin-top:4px;text-align:right;font-weight:800}
+.pos{color:var(--green)}.neg{color:var(--red)}
+.badge{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:850;margin-top:9px;background:#EAF4EE;color:var(--green)}
+.badge.warn{background:#FFF1D6;color:#8A5A00}.badge.red{background:#FCE2E2;color:var(--red)}
+.bar{height:8px;border-radius:99px;background:#E8EEE9;margin-top:12px;overflow:hidden}.bar>span{display:block;height:100%;background:var(--forest2)}
+.riskrow{display:grid;grid-template-columns:1fr auto;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.riskrow:last-child{border-bottom:0}
+.status{font-size:11px;font-weight:900;padding:5px 8px;border-radius:999px}.status.green{background:#DFF1E5;color:var(--green)}.status.amber{background:#FFF1D6;color:#8A5A00}.status.red{background:#FCE2E2;color:var(--red)}
+.action{padding:12px;border-left:4px solid var(--gold);background:#FBFAF3;border-radius:12px;margin-bottom:10px}.action b{color:var(--forest)}
+.flow{display:grid;gap:8px}.step{display:flex;gap:10px;align-items:flex-start}.num{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:var(--forest);color:#fff;font-weight:900;font-size:12px;flex:0 0 auto}.step strong{display:block;color:var(--forest)}
+.small{font-size:12px;color:var(--muted);line-height:1.45}
+.note{background:#FFF9E8;border:1px solid #F0DFAB;padding:12px;border-radius:14px;font-size:12px}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:28px 16px 36px}
+@media(min-width:760px){.kpis{grid-template-columns:repeat(5,1fr)}.holdings-grid{grid-template-columns:repeat(2,1fr)}.risk-grid{grid-template-columns:1.1fr .9fr}.action-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <img src="icon-192.png" alt="KH"/>
+    <div><h1>King Harimau Capital</h1><p>MD Master Dashboard · 8 Sep 2026 · 17:44 MYT evidence baseline</p></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="tabs">
+    <button class="tab active" data-panel="overview">MD Overview</button>
+    <button class="tab" data-panel="portfolio">Portfolio</button>
+    <button class="tab" data-panel="risk">Risk & Audit</button>
+    <button class="tab" data-panel="governance">Governance</button>
+  </div>
+
+  <section id="overview" class="panel active">
+    <div class="grid kpis">
+      <div class="card kpi"><div class="label">Market Value</div><div class="value">RM3,848</div><div class="sub">5 confirmed positions</div></div>
+      <div class="card kpi"><div class="label">Portfolio Cost</div><div class="value">RM3,884</div><div class="sub">Confirmed average cost</div></div>
+      <div class="card kpi"><div class="label">Unrealised P&L</div><div class="value neg">-RM36</div><div class="sub">-0.93% total account</div></div>
+      <div class="card kpi"><div class="label">Core Return</div><div class="value pos">+6.85%</div><div class="sub">Excluding legacy RTECH</div></div>
+      <div class="card kpi"><div class="label">Deployable Cash</div><div class="value">—</div><div class="sub">Broker cash input required</div></div>
+    </div>
+
+    <div class="section-title">MD action panel</div>
+    <div class="grid action-grid">
+      <div class="card">
+        <div class="action"><b>Trading:</b> NO TRADE until fresh capital/cash is confirmed.</div>
+        <div class="action"><b>RTECH:</b> Legacy Recovery-Exit. No add. Monitor RM0.23 pivot.</div>
+        <div class="action"><b>INARI:</b> HOLD / profit-protection watch after +16.52% gain.</div>
+        <div class="action"><b>GAMUDA:</b> HOLD / no chase after breakout to RM4.75.</div>
+      </div>
+      <div class="card">
+        <div class="riskrow"><div><b>Largest holding</b><div class="small">INARI ~27.9% of current market value</div></div><span class="status red">RED</span></div>
+        <div class="riskrow"><div><b>Speculative exposure</b><div class="small">RTECH ~16.1%</div></div><span class="status red">RED</span></div>
+        <div class="riskrow"><div><b>Sector concentration</b><div class="small">Technology incl. RTECH ~44.0%</div></div><span class="status amber">AMBER</span></div>
+        <div class="riskrow"><div><b>Policy breaches</b><div class="small">No active unapproved breach recorded</div></div><span class="status green">GREEN</span></div>
+      </div>
+    </div>
+
+    <div class="section-title">Control status</div>
+    <div class="note">Internal Audit view: <b>control design strong, implementation developing.</b> The next priority is operating the Master Ledger, Trade Ticket, Risk Dashboard, Shariah Register and contribution-adjusted performance reporting continuously—not creating more policy documents.</div>
+  </section>
+
+  <section id="portfolio" class="panel">
+    <div class="section-title">Confirmed portfolio</div>
+    <div class="grid holdings-grid">
+      <div class="card"><div class="holding"><div><div class="ticker">INARI</div><div class="meta">400 units · cost RM2.30</div></div><div><div class="price">RM2.68</div><div class="pnl pos">+RM152 · +16.52%</div></div></div><span class="badge">HOLD · Protect winner</span><div class="bar"><span style="width:100%"></span></div><div class="small" style="margin-top:8px">Warning RM2.58–2.60 · deeper review RM2.53–2.55.</div></div>
+      <div class="card"><div class="holding"><div><div class="ticker">GAMUDA</div><div class="meta">100 units · cost RM4.40</div></div><div><div class="price">RM4.75</div><div class="pnl pos">+RM35 · +7.95%</div></div></div><span class="badge">HOLD · No chase</span><div class="bar"><span style="width:44%"></span></div><div class="small" style="margin-top:8px">First retest RM4.68–4.70 · caution ~RM4.55 · deeper review below RM4.49.</div></div>
+      <div class="card"><div class="holding"><div><div class="ticker">SUNMED</div><div class="meta">400 units · cost RM2.04</div></div><div><div class="price">RM2.10</div><div class="pnl pos">+RM24 · +2.94%</div></div></div><span class="badge">HOLD</span><div class="bar"><span style="width:78%"></span></div><div class="small" style="margin-top:8px">Key support RM2.03–2.07.</div></div>
+      <div class="card"><div class="holding"><div><div class="ticker">BIMB</div><div class="meta">400 units · cost RM2.11</div></div><div><div class="price">RM2.10</div><div class="pnl neg">-RM4 · -0.47%</div></div></div><span class="badge">HOLD</span><div class="bar"><span style="width:78%"></span></div><div class="small" style="margin-top:8px">Key review area RM2.07. Do not act merely because price is near cost.</div></div>
+      <div class="card"><div class="holding"><div><div class="ticker">RTECH</div><div class="meta">2,700 units · cost RM0.32</div></div><div><div class="price">RM0.23</div><div class="pnl neg">-RM243 · -28.13%</div></div></div><span class="badge red">LEGACY · HOLD / NO ADD</span><div class="bar"><span style="width:58%"></span></div><div class="small" style="margin-top:8px">RM0.23 pivot · trim review RM0.27–0.28 · serious review below RM0.20 · exit territory below RM0.185 unless fundamentals improve.</div></div>
+    </div>
+  </section>
+
+  <section id="risk" class="panel">
+    <div class="section-title">Risk dashboard</div>
+    <div class="card">
+      <div class="riskrow"><div><b>Largest holding ceiling</b><div class="small">Actual ~27.9% · hard policy ceiling 25%</div></div><span class="status red">RED</span></div>
+      <div class="riskrow"><div><b>Speculative exposure</b><div class="small">Actual ~16.1% · hard ceiling 12.5%</div></div><span class="status red">RED</span></div>
+      <div class="riskrow"><div><b>Single sector</b><div class="small">Technology incl. legacy RTECH ~44.0% · hard ceiling 45%</div></div><span class="status amber">AMBER</span></div>
+      <div class="riskrow"><div><b>Unreconciled evidence</b><div class="small">Latest M+ screenshot baseline recorded</div></div><span class="status green">GREEN</span></div>
+      <div class="riskrow"><div><b>Open audit actions</b><div class="small">6 current remediation actions</div></div><span class="status amber">AMBER</span></div>
+    </div>
+
+    <div class="section-title">Audit actions</div>
+    <div class="card">
+      <div class="action"><b>AUD-001 · Fund Accountant:</b> operate Master Portfolio & Cash Ledger continuously.</div>
+      <div class="action"><b>AUD-002 · CEO:</b> make Trade Approval / Execution Ticket mandatory.</div>
+      <div class="action"><b>AUD-003 · CEO:</b> operate risk-limit dashboard and escalate breaches.</div>
+      <div class="action"><b>AUD-004 · CEO + CIO:</b> formalise Market Data Hierarchy evidence.</div>
+      <div class="action"><b>AUD-005 · Fund Accountant:</b> implement contribution-adjusted performance reporting.</div>
+      <div class="action"><b>AUD-006 · CEO:</b> populate formal Shariah verification register.</div>
+    </div>
+  </section>
+
+  <section id="governance" class="panel">
+    <div class="section-title">Decision workflow</div>
+    <div class="card flow">
+      <div class="step"><div class="num">1</div><div><strong>CIO</strong><div class="small">Research, valuation, technical gate, portfolio fit, recommendation.</div></div></div>
+      <div class="step"><div class="num">2</div><div><strong>CEO</strong><div class="small">Policy, risk, Shariah, data quality, liquidity and documentation clearance.</div></div></div>
+      <div class="step"><div class="num">3</div><div><strong>Fund Accountant</strong><div class="small">Confirms broker cash / deployable cash before BUY or ADD.</div></div></div>
+      <div class="step"><div class="num">4</div><div><strong>Managing Director</strong><div class="small">APPROVE / REJECT / MODIFY. Final authority.</div></div></div>
+      <div class="step"><div class="num">5</div><div><strong>Execution</strong><div class="small">Broker order remains proposed until evidence of actual fill is supplied.</div></div></div>
+      <div class="step"><div class="num">6</div><div><strong>Fund Accountant</strong><div class="small">Updates units, average cost, cash, P&L and reconciles screenshot/contract note.</div></div></div>
+      <div class="step"><div class="num">7</div><div><strong>Internal Auditor</strong><div class="small">Tests evidence trail, controls and exceptions independently; reports directly to MD.</div></div></div>
+    </div>
+
+    <div class="section-title">Data hierarchy</div>
+    <div class="card">
+      <div class="action"><b>Tier 1:</b> M+ / broker evidence — execution and portfolio confirmation.</div>
+      <div class="action"><b>Tier 2:</b> Bursa Malaysia — official announcements and primary verification.</div>
+      <div class="action"><b>Tier 3:</b> recognised financial data providers — research and technical reference.</div>
+      <div class="action"><b>Tier 4:</b> general web sources — indicative only; not sole basis for execution.</div>
+    </div>
+  </section>
+</main>
+
+<footer>King Harimau Capital · Internal MD Dashboard · PWA-ready static site</footer>
+
+<script>
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.panel).classList.add('active');
+  });
+});
+if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{})); }
+</script>
+</body>
+</html>
